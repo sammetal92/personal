@@ -51,7 +51,7 @@ echo "" | tee -a LinuxSetup.log
 date | tr "\n" ":" | tee -a LinuxSetup.log
 echo " Installing Vim." | tee -a LinuxSetup.log
 sleep 1
-#sudo yum -y install vim
+sudo yum -y install vim
 date | tr "\n" ":" | tee -a LinuxSetup.log
 if [ $? == 0 ]; then
 	echo " Vim installation successful." | tee -a LinuxSetup.log
