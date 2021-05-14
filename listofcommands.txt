@@ -17,6 +17,7 @@ ps : list all running processes
 [command] &  :  immediately run command as a background job
 ps -dN | grep pts/3 : find process being run at pts/3
 kill -9 [process id] : forcefully kill a process of process id
+tee -a <file name> : show output AND append to <file name> file as well
 
 ------------ CUSTOM COMMANDS --------------
 temp : monitor temperature
