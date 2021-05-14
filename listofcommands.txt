@@ -1,0 +1,25 @@
+top -i : Shows cpu/memory usage without idle processes
+free -m : Shows memory usgae in Megabytes
+yum install : installs software packages
+yum autoremove : removes packages and useless dependencies installed
+vcgencmd measure_temp : shows current temperature of raspberry pi
+df -h : shows disk usage
+nmcli : network manager cli
+nmtui : network manager text ui
+vcgencmd get_throttled : current / past under-voltage
+watch : monitor the output of a command
+firewall-cmd --zone=public --permanent --add-port=8080/tcp  :  open port 8080
+firewall-cmd --reload  :  reload firewall
+uptime : continuously running time
+fg, bg : foreground or background a job
+jobs : list all jobs
+ps : list all running processes
+[command] &  :  immediately run command as a background job
+ps -dN | grep pts/3 : find process being run at pts/3
+kill -9 [process id] : forcefully kill a process of process id
+
+------------ CUSTOM COMMANDS --------------
+temp : monitor temperature
+throttle : check throttled status
+voltage : monitor voltage
+voltemp : monitor voltage and temperature
