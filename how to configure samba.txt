@@ -1,0 +1,51 @@
+first install using "sudo yum install samba samba-client"
+
+then start and enable services:
+sudo systemctl start smb.service
+sudo systemctl start nmb.service
+sudo systemctl enable smb.service
+sudo systemctl enable nmb.service
+
+make directory to act as mount point for samba
+mkdir /mnt/samba
+
+make user group for samba
+sudo groupadd sambashare
+
+make user for samba
+sudo useradd -M -d /mnt/samba -s /usr/sbin/nologin -G sambashare sambauser
+
+make samba user as group owner
+sudo chown sambauser:sambashare /mnt/samba
+
+set password for samba user and enable the user
+sudo smbpasswd -a sambauser
+sudo smbpasswd -e sambauser
+
+add this in /etc/samba/smb.conf:
+[sambauser]
+    path = /mnt/samba
+    browseable = no
+    read only = no
+    force create mode = 0660
+    force directory mode = 2770
+    valid users = sambauser @sadmin
+
+restart services:
+sudo systemctl restart smb.service
+sudo systemctl restart nmb.service
+
+install cifs utils
+sudo yum install cifs-utils
+
+install ntfs-3g:
+sudo yum install ntfs-3g
+
+set enforce to permissive:
+sudo setenforce Permissive && getenforce
+
+mount first the ntfs hard drive
+mount -t ntfs-3g /dev/sda1 /mnt/win
+
+then mount cifs-utils for /mnt/samba
+sudo mount -t cifs -o username=sambauser //192.168.0.180/sambauser /mnt/samb
