@@ -1,0 +1,40 @@
+$ wget https://repository-master.mulesoft.org/nexus/content/repositories/releases/org/mule/distributions/mule-standalone/4.5.0/mule-standalone-4.5.0.tar.gz
+
+$ tar zxf mule-standalone-4.1.1.tar.gz
+
+$ wget https://download.tanukisoftware.com/wrapper/3.5.34/wrapper-linux-armhf-32-3.5.34.tar.gz
+
+$ tar zxf wrapper-linux-armhf-32-3.5.34.tar.gz
+
+$ cp wrapper-linux-armhf-32-3.5.34/lib/libwrapper.so mule-standalone-4.1.1/lib/boot/libwrapper-linux-armhf-32.so
+
+$ cp wrapper-linux-armhf-32-3.5.34/lib/wrapper.jar mule-standalone-4.1.1/lib/boot/wrapper-3.2.3.jar
+
+$ cp wrapper-linux-armhf-32-3.5.34/bin/wrapper mule-standalone-4.1.1/lib/boot/exec/wrapper-linux-armhf-32
+
+$ vi mule-standalone-4.1.1/bin/mule
+
+/$PROC_ARCH
+
+add following lines below case
+
+  'armv7l')
+       echo "Armhf architecture detected"
+       DIST_ARCH="armhf"
+       DIST_BITS="32"
+       break;;
+
+
+$ vi mule-standalone-4.1.1/conf/wrapper.conf
+
+edit
+
+# Initial Java Heap Size (in MB)
+wrapper.java.initmemory=256
+# Maximum Java Heap Size (in MB)
+wrapper.java.maxmemory=512
+
+
+$ cd mule-standalone-4.1.1/bin/
+
+$ ./mule
