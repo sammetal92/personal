@@ -19,6 +19,8 @@ ps -dN | grep pts/3 : find process being run at pts/3
 kill -9 [process id] : forcefully kill a process of process id
 tee -a <file name> : show output AND append to <file name> file as well
 
+lsblk : list all drives (mounted and unmounted) connected to the computer
+
 ------------ CUSTOM COMMANDS --------------
 temp : monitor temperature
 throttle : check throttled status
